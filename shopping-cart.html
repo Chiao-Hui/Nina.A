@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nita.A | 購物車</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="256x256" href="img/Logo.png">
+    <link rel="shortcut icon" sizes="256x256" href="img/Logo.png">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #E8E8EA;">
+          <a class="navbar-brand" href="index.html"><img src="img/Logo.png" alt="Nita.A"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="about.html">關於</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">畫廊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">全部商品</a></li>
+              </ul>
+              <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="輸入以開始搜尋..." aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">search</button>
+              </form>
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item"><a class="nav-link" href="/shopping-cart.html"><img src="img/shopping-cart.png" alt="shopping-cart"></a></li>
+                  <li class="nav-item"><a class="nav-link" href="/profile.html"><img src="img/profile.png" alt="profile"></a></li>
+              </ul>
+              </div>
+        </nav>
+      </header>
+      <main>
+        <div id="cartItemsContainer"></div>
+
+        <!-- <script>
+            function displayCart() {
+                let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+                for (let itemId of cartItems) {
+                    console.log('獲取商品信息，商品ID：', itemId);
+                }
+            }
+            displayCart();
+        </script> -->
+        <script>
+            function displayCart() {
+                let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+                let cartItemsContainer = document.getElementById('cartItemsContainer');
+                cartItemsContainer.innerHTML = '';
+        
+                if (cartItems.length === 0) {
+                    cartItemsContainer.innerHTML = '<p>購物車是空的</p>';
+                } else {
+                    for (let itemId of cartItems) {
+                        let itemInfo = getItemInfo(itemId);
+                        if (itemInfo) {
+                            let cartItemHTML = `
+                                <div class="cart-item">
+                                    <img src="${itemInfo.image}" alt="${itemInfo.name}">
+                                    <h4>${itemInfo.name}</h4>
+                                    <p>${itemInfo.price}</p>
+                                </div>
+                            `;
+                            cartItemsContainer.innerHTML += cartItemHTML;
+                        }
+                    }
+                }
+            }
+        
+            function getItemInfo(itemId) {
+                let itemInfoMap = {
+                    'item1': {
+                        name: '嘉義火雞手工啤酒紙卡片(烤松香凸版印刷)',
+                        price: 'NT＄50',
+                        image: 'img/Commodity_1.png',
+                    },
+                    'item2': {
+                        name: '嘉義火雞蛋糕閃亮亮生日卡片',
+                        price: 'NT＄40',
+                        image: 'img/Commodity_2.png',
+                    },
+                    'item3': {
+                        name: '星河書籤-烏鴉尾羽款',
+                        price: 'NT＄25',
+                        image: 'img/Commodity_3.png',
+                    },
+                    'item4': {
+                        name: '膠片投影片吊飾-北投地熱谷款',
+                        price: 'NT＄290',
+                        image: 'img/Commodity_4.png',
+                    },
+                    'item5': {
+                        name: '明信片-星空夢藍',
+                        price: 'NT＄40',
+                        image: 'img/Commodity_5.png',
+                    },
+                    'item6': {
+                        name: '明信片-嘉義阿里山',
+                        price: 'NT＄40',
+                        image: 'img/Commodity_6.png',
+                    },
+                    'item7': {
+                        name: '明信片-台東關山鎮',
+                        price: 'NT＄40',
+                        image: 'img/Commodity_7.png',
+                    },
+                    'item8': {
+                        name: '【限量】手工大陶器青蘋果杯子',
+                        price: 'NT＄250',
+                        image: 'img/Commodity_8.png',
+                    },
+                    'item9': {
+                        name: '【限量】嘉義火雞手工地毯',
+                        price: 'NT＄800',
+                        image: 'img/Commodity_9.png',
+                    },
+                };
+                return itemInfoMap[itemId];
+            }
+            displayCart();
+        </script>
+
+        <!-- <br><br><br><br><br><br><br>
+        <h1 class="E404">抱歉,您的購物車內無任何商品</h1>
+        <h1 class="E404en">Sorry, There are no items in your cart.</h1>
+        <br><br><br><br><br><br><br> -->
+
+    </main>
+
+
+    <div class="Contact">
+        <p id="ContactTitle">Nita.A插畫｜旅帳｜文創</p>
+        <div class="info">
+            <img src="img/BigLogo.png" alt="BigLogo">
+        </div>
+        <div class="info">
+            <p>聯絡我們
+                <br><br>
+                服務時間／10am - 5pm<br>
+                E-mail／nita.acurious@gmail.com<br>
+                Instagram／nita.acurious</p>
+        </div>
+    </div>
+    <footer>
+        <p>2023 © Nita.A ALL RIGHTS RESERVED</p>
+    </footer>
+    <script src="js/jQuery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
